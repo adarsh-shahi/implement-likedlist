@@ -39,8 +39,12 @@ class LL {
   }
 
 
-  // solve this later
+
   public void removeAt(int i){
+    if(i == 0){
+      removeFirst();
+      return;
+    }
     if(i >= size) return ;
     int count = 0;
     Node current = head;
@@ -49,6 +53,7 @@ class LL {
       count++;
     }
     current.next = current.next.next;
+    size--;
   }
 
   public void insertAt(int i, int n){
