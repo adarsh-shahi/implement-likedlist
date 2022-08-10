@@ -6,7 +6,7 @@ public class linkedlist {
     ll.insertLast(20);
     ll.insertLast(30);
     ll.insertLast(40);
-    ll.insertAt(0, 100);
+    ll.removeAt(0);
    
     ll.print();
     // ll.reverse();
@@ -20,10 +20,10 @@ class LL {
   private class Node {
     int value = 0;
     Node next = null;
+    Node previous = null;
   }
 
   private Node head = null;
-  private Node tail = null;
   private int size = 0;
 
   public void insertLast(int n){
@@ -35,19 +35,27 @@ class LL {
       Node current = head; 
       while(current.next != null) current = current.next;
       current.next = node;
+      node.previous = current;
     }
     size++;
   }
 
 
-  // solve this later
   public void removeAt(int i){
+    if(i == 0){
+      removeFirst();
+      return;
+    }
     if(i >= size) return ;
     int count = 0;
     Node current = head;
-    while(count < i){
+    while(count < i - 1){
       current = current.next;
+      count++;
     }
+    current.next = current.next.next;
+    current.next.previous = current;
+    size--;
   }
 
   public void insertAt(int i, int n){
@@ -68,6 +76,7 @@ class LL {
     System.out.println("came here");
     current.next = node;
     node.next = temp;
+    node.previous = current;
     size++;
 
   }
@@ -117,6 +126,7 @@ class LL {
   public void removeFirst(){
     if(head == null) return;
     head = head.next;
+    head.previous = null;
     size--;
   }
 
