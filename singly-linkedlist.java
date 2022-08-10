@@ -2,11 +2,11 @@ public class linkedlist {
 
   public static void main(String[] args) {
     LL ll = new LL();
-    ll.add(10);
-    ll.add(20);
-    ll.add(30);
-    ll.add(40);
-    ll.insertAt(0, 100);
+    ll.insertLast(10);
+    ll.insertLast(20);
+    ll.insertLast(30);
+    ll.insertLast(40);
+    ll.removeAt(3);
    
     ll.print();
     // ll.reverse();
@@ -25,7 +25,7 @@ class LL {
   private Node head = null;
   private int size = 0;
 
-  public void add(int n){
+  public void insertLast(int n){
     Node node = new Node();
     node.value = n;
 
@@ -44,9 +44,11 @@ class LL {
     if(i >= size) return ;
     int count = 0;
     Node current = head;
-    while(count < i){
+    while(count < i - 1){
       current = current.next;
+      count++;
     }
+    current.next = current.next.next;
   }
 
   public void insertAt(int i, int n){
