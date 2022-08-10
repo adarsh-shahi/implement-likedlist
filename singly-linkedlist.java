@@ -6,7 +6,7 @@ public class linkedlist {
     ll.insertLast(20);
     ll.insertLast(30);
     ll.insertLast(40);
-    ll.removeAt(3);
+   
    
     ll.print();
     // ll.reverse();
@@ -20,22 +20,52 @@ class LL {
   private class Node {
     int value = 0;
     Node next = null;
+
+    Node (int n){
+      this.value = n;
+    }
+
+    Node (){
+
+    }
+
+    Node (int n, Node next){
+      this.value = n;
+      this.next = next;
+    }
   }
 
   private Node head = null;
   private int size = 0;
 
   public void insertLast(int n){
-    Node node = new Node();
-    node.value = n;
-
-    if(head == null) head = node;
-    else {
-      Node current = head; 
-      while(current.next != null) current = current.next;
-      current.next = node;
+    if(head == null){
+       head = new Node(n);
+       return;
     }
-    size++;
+    insertLast(head, n);
+
+    
+    /*  Iterrative
+      Node node = new Node();
+      node.value = n;
+
+      if(head == null) head = node;
+      else {
+        Node current = head; 
+        while(current.next != null) current = current.next;
+        current.next = node;
+      }
+      size++;
+    */
+  }
+
+  public void insertLast(Node current, int n){
+    if(current.next == null){
+       current.next = new Node(n);
+       return;
+    }
+    insertLast(current.next, n);
   }
 
 
@@ -75,8 +105,9 @@ class LL {
     current.next = node;
     node.next = temp;
     size++;
-
   }
+
+
 
   public void inserFirst(int n){
     Node node = new Node();
