@@ -50,11 +50,11 @@ class LL {
   }
 
   public void insertAt(int i, int n){
+    if(i >= size) return;
     if(i == 0){
       inserFirst(n);
       return;
     }
-    if(i >= size) return;
     Node node = new Node();
     node.value = n;
     Node current = head;
@@ -67,6 +67,7 @@ class LL {
     System.out.println("came here");
     current.next = node;
     node.next = temp;
+    size++;
 
   }
 
@@ -76,6 +77,7 @@ class LL {
     Node temp = head;
     head = node;
     node.next = temp;
+    size++;
   }
 
   public void reverse(){
